@@ -4,11 +4,186 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Models="using:GPIODashboard.Models"
+    xmlns:converters="using:GPIODashboard.Converters"   
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
+
+
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVis" />
+    </Page.Resources>
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="*" />
+    
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <StackPanel  Margin="0,0"  Grid.Row="0" Grid.Column = "0">
+                <TextBlock  Margin="0,0"  FontSize="20" Height="auto">
+                                   <Run Text="{x:Bind  VisibleConnectorName, Mode=OneWay}"/>
+                                    <!--
+            
+                                   <Run Text="{x:Bind  RecordingState, Mode=OneWay}" />
+                                   -->
+                </TextBlock>
+                <AppBarButton x:Name="startRecording"  Margin="0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="startRecording_Click" Width="Auto" Icon="Play" Label="Start" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+                <AppBarButton x:Name="stopRecording"   Margin="0,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="stopRecording_Click" Width="Auto" Icon="Play" Label="Stop" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+                <AppBarButton x:Name="resetAllOutputs" Margin="0,00" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="resetAllOutputs_Click" Width="Auto" Icon="Clear" Label="Reset Outputs" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+
+            </StackPanel>
+ 
+
+            <StackPanel Grid.Row="0" Grid.Column = "1" Width="auto">
+    
+                <!--
+
+                <Image Visibility="Visible" Height ="auto" Width="auto" Source="ms-appx:///images/MovementDetection.png"  Stretch="UniformToFill"  Margin="0,0" />
+                -->
+                <ListView x:Name="_GPIOBanks" Width="auto" SelectionMode="Single"  IsItemClickEnabled = "False" ItemsSource="{x:Bind OutPuts.GPIOBanks}"  >
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+     
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:GPIOObjects">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel  Margin="0,0" Grid.Column="1" Orientation="Vertical">
+                                <TextBlock  FontSize ="20"  Text="{x:Bind BankName}" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+                                    <ListView Margin="0,10" SelectionMode="Single"  IsItemClickEnabled = "False" ItemsSource="{x:Bind GPIOs}"  >
+
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical" />
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+      
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="Models:GPIOObject">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="0" >
+                                                        <!--
+                                     
+                                                        <Image  Height ="38" Width="38"  Visibility="Visible"  Source="ms-appx:///images/MovementDetection.png"  Stretch="UniformToFill"  Margin="0,0" />
+                                                                           -->
+                                                    </StackPanel>
+                                                 <StackPanel  Margin="0,0" Grid.Column="1" Orientation="Vertical">
+                                                        <ToggleSwitch FontSize ="16" Header="{x:Bind PinName,Mode=OneTime}" OffContent="OFF" OnContent="ON" IsOn="{x:Bind IsOn,Mode=OneWay}"  Loaded="ToggleSwitch_Loaded"/>
+                                                        <!--
+                                                                         <ToggleSwitch FontSize ="16" DataContext="" Header="{x:Bind PinName,Mode=OneTime}" OffContent="OFF" OnContent="ON" IsOn="{x:Bind IsOn,Mode=OneWay}"  Loaded="ToggleSwitch_Loaded"/>
+                                    
+                                                    <TextBlock Foreground="Blue"  Text="{x:Bind PinName}" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+                                                    <TextBlock Foreground="Blue"  Text="{x:Bind ActValueasString,Mode=OneWay}"  TextWrapping="Wrap"   VerticalAlignment="Top"/>
+                                                     -->
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+
+                                    </ListView.ItemTemplate>
+
+
+                                </ListView>
+
+
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+
+            </ListView>
+
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column = "1" Width="auto">
+
+       
+                <ListView x:Name="_GPIOInputBanks" Width="auto" SelectionMode="Single"  IsItemClickEnabled = "False" ItemsSource="{x:Bind Inputs.GPIOBanks}"  >
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:GPIOObjects">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel  Grid.Column="1" Margin="0,0" Orientation="Vertical">
+                                    <TextBlock FontSize ="20"  Text="{x:Bind BankName}" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+                                    <ListView Margin="0,10" SelectionMode="Single"  IsItemClickEnabled = "False" ItemsSource="{x:Bind GPIOs}"  >
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Vertical" />
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="Models:GPIOObject">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                 
+                                                    <StackPanel  Margin="00,0" Grid.Column="0" Orientation="Vertical">
+                                                        <TextBlock FontSize ="20" Text="{x:Bind PinName, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                                                        <!--
+                                                        <ToggleSwitch Header="{x:Bind PinName,Mode=OneWay}" OffContent="OFF" OnContent="ON" IsOn="{x:Bind IsOn,Mode=OneWay}"/>
+                                                 
+                                             
+                                                    <TextBlock Foreground="Blue"  Text="{x:Bind ActValueasString,Mode=OneWay}"  TextWrapping="Wrap"   VerticalAlignment="Top"/>
+                                                     -->
+                                                    </StackPanel>
+                                                    <StackPanel Margin="20,0"  Grid.Column="1" >
+                                                        <!--
+                                             
+                                                        <Image  Height ="40" Width="40"  Visibility="{x:Bind IsOn,Mode=OneWay,Converter={StaticResource BoolToVis},ConverterParameter= NoNegation}"  Source="ms-appx:///images/wireless-146184_1280.png"  Stretch="UniformToFill"  Margin="0,0" />
+                                                        -->
+                                                        <Image  Height ="40" Width="40"  Visibility="Visible"  Source="{ x:Bind IsOnBitmapImage,Mode=OneWay}" Stretch="UniformToFill"  Margin="0,0" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </DataTemplate>
+
+                                        </ListView.ItemTemplate>
+
+
+                                    </ListView>
+
+
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+
+                </ListView>
+
+            </StackPanel>
             <!--
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.

@@ -23,6 +23,8 @@ namespace GPIODashboard.Views
         private readonly KeyboardAccelerator _altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
         private readonly KeyboardAccelerator _backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
+        private GPIODashboard.App m_app;
+		
         private bool _isBackEnabled;
         private WinUI.NavigationViewItem _selected;
 
@@ -38,8 +40,9 @@ namespace GPIODashboard.Views
             set { Set(ref _selected, value); }
         }
 
-        public ShellPage()
+        public ShellPage(GPIODashboard.App app = null)
         {
+          	m_app = app;
             InitializeComponent();
             DataContext = this;
             Initialize();
@@ -48,6 +51,7 @@ namespace GPIODashboard.Views
         private void Initialize()
         {
             NavigationService.Frame = shellFrame;
+			NavigationService.AppEnvironment = m_app; // wsc Nov. 2018
             NavigationService.NavigationFailed += Frame_NavigationFailed;
             NavigationService.Navigated += Frame_Navigated;
             navigationView.BackRequested += OnBackRequested;

@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="GPIODashboard.Views.EnvironmentConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GPIODashboard.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Margin="0,0" Orientation="Vertical">
+            <TextBox x:Name="Hostname"  KeyUp="OnKeyUpHandler"  PlaceholderText="Insert Remote Host" Text="{x:Bind Environment.HostName, Mode=TwoWay}" Header="Remote Hostname" TextWrapping="Wrap"  Margin="0,0,0,0" VerticalAlignment="Top" Width="150" />
+            <TextBox x:Name="Portname"  KeyUp="OnKeyUpHandler"  PlaceholderText="Insert Remote Port" InputScope="Number" MaxLength="4"   Text="{x:Bind Environment.Port, Mode=TwoWay}"  Header="Remote PortName" TextWrapping="Wrap"  Margin="0,0,0,0" VerticalAlignment="Top" Width="150" />
+        </StackPanel>
+    </Grid>
+</Page>

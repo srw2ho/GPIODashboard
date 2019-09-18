@@ -15,6 +15,26 @@ namespace GPIODashboard.Services
 
         private static Frame _frame;
         private static object _lastParamUsed;
+        private static GPIODashboard.App m_AppEnvironment;
+
+
+        public static GPIODashboard.App AppEnvironment
+        {
+            get
+            {
+                return m_AppEnvironment;
+            }
+
+            set
+            {
+                if (m_AppEnvironment == null)
+                {
+                    m_AppEnvironment = value;
+                }
+
+
+            }
+        }
 
         public static Frame Frame
         {
@@ -59,6 +79,7 @@ namespace GPIODashboard.Services
             // Don't open the same page multiple times
             if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParamUsed)))
             {
+                parameter = m_AppEnvironment; // set Environment as parameter for all Sub-pages
                 var navigationResult = Frame.Navigate(pageType, parameter, infoOverride);
                 if (navigationResult)
                 {

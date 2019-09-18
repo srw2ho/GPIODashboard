@@ -109,13 +109,23 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Converters\Converters.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
+    <Compile Include="Helpers\ILocalStorageSettings.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\LocalStorageSettings.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\SettingsToStorage.cs" />
+    <Compile Include="Models\GPIOObjects.cs" />
+    <Compile Include="Models\StationEnvironment.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="Views\EnvironmentConfig.xaml.cs">
+      <DependentUpon>EnvironmentConfig.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +163,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EnvironmentConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -175,6 +189,14 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\camera_icon.png" />
+    <Content Include="Assets\MovementDetection.png" />
+    <Content Include="GPIOServiceConnector.sln" />
+    <Content Include="Images\camera_icon.png" />
+    <Content Include="Images\MovementDetection.png" />
+    <Content Include="Images\Signal_0.bmp" />
+    <Content Include="Images\Signal_1.bmp" />
+    <Content Include="Images\wireless-146184_1280.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -195,6 +217,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SharedSources\GPIOServiceConnector\GPIOServiceConnector.vcxproj">
+      <Project>{ee933deb-cd73-4080-8bda-bf95517ab28f}</Project>
+      <Name>GPIOServiceConnector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GPIODashboard.Core\GPIODashboard.Core.csproj">
       <Project>{226FC324-C16F-4B84-86FB-14F5408B308B}</Project>
       <Name>GPIODashboard.Core</Name>
