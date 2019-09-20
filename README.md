@@ -6,8 +6,8 @@
 - 4 OpenCollector oputputs
 - I2C-Driver for long distances
 
-Dashboard view
+# Dashboard view
 ![Screenshot](GPIODashboard.png)
 
-GPIO-Pi-Hat wiht wiring 
+# GPIO-Pi-Hat wiht wiring 
 ![Screenshot](RaspberryPiHat.png)
