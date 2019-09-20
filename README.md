@@ -1,4 +1,4 @@
-"# GPIODashboard for testing own Pi3B(+) HAT- Hardware" 
+# GPIODashboard for testing own Pi3B(+) HAT- Hardware
 
  Dashboard for testing own Raspberry Pi3B(+) HAT following usage
 - 12 inputs
