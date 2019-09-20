@@ -8,6 +8,5 @@ simple Dashboard for own Raspberry Pi3B(+) HAT following usage
 Dashboard view
 ![Screenshot](GPIODashboard.png)
 
-GPIO-Pi-Hat
-
+GPIO-Pi-Hat wiht wiring 
 ![Screenshot](RaspberryPiHat.png)
