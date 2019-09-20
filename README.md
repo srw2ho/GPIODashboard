@@ -10,4 +10,4 @@ Dashboard view
 
 GPIO-Pi-Hat
 
-![Screenshot](RaspberryPiHat.JPG)
+![Screenshot](RaspberryPiHat.png)
