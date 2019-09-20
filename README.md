@@ -1,5 +1,6 @@
-"# GPIODashboard" 
-simple Dashboard for own Raspberry Pi3B(+) HAT following usage
+"# GPIODashboard for testing own Pi3B(+) HAT- Hardware" 
+
+ Dashboard for testing own Raspberry Pi3B(+) HAT following usage
 - 12 inputs
 - 12 outpus
 - 4 OpenCollector oputputs
