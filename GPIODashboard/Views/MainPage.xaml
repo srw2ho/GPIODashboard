@@ -26,7 +26,7 @@
                 <RowDefinition Height="*" />
 
             </Grid.RowDefinitions>
-            <StackPanel  Margin="0,0"  Grid.Row="0" Grid.Column = "0">
+            <StackPanel  Margin="0,-20"  Grid.Row="0" Grid.Column = "0">
                 <TextBlock  Margin="0,0"  FontSize="20" Height="auto">
                                    <Run Text="{x:Bind  VisibleConnectorName, Mode=OneWay}"/>
                                     <!--
@@ -34,20 +34,20 @@
                                    <Run Text="{x:Bind  RecordingState, Mode=OneWay}" />
                                    -->
                 </TextBlock>
-                <AppBarButton x:Name="startRecording"  Margin="0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="startRecording_Click" Width="Auto" Icon="Play" Label="Start" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
-                <AppBarButton x:Name="stopRecording"   Margin="0,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="stopRecording_Click" Width="Auto" Icon="Play" Label="Stop" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
-                <AppBarButton x:Name="resetAllOutputs" Margin="0,00" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="resetAllOutputs_Click" Width="Auto" Icon="Clear" Label="Reset Outputs" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+                <AppBarButton x:Name="startRecording"  Margin="0,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="startRecording_Click" Width="Auto" Icon="Play" Label="Start" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+                <AppBarButton x:Name="stopRecording"   Margin="0,8"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="stopRecording_Click" Width="Auto" Icon="Play" Label="Stop" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+                <AppBarButton x:Name="resetAllOutputs" Margin="0,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="resetAllOutputs_Click" Width="Auto" Icon="Clear" Label="Reset Outputs" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
 
             </StackPanel>
- 
 
-            <StackPanel Grid.Row="0" Grid.Column = "1" Width="auto">
+
+            <StackPanel Margin="0,-20"  Grid.Row="0" Grid.Column = "1" Width="auto">
     
                 <!--
 
                 <Image Visibility="Visible" Height ="auto" Width="auto" Source="ms-appx:///images/MovementDetection.png"  Stretch="UniformToFill"  Margin="0,0" />
                 -->
-                <ListView x:Name="_GPIOBanks" Width="auto" SelectionMode="Single"  IsItemClickEnabled = "False" ItemsSource="{x:Bind OutPuts.GPIOBanks}"  >
+                <ListView  Margin="0,-25" x:Name="_GPIOBanks" Width="auto" SelectionMode="Single"  IsItemClickEnabled = "False" ItemsSource="{x:Bind OutPuts.GPIOBanks}"  >
 
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
